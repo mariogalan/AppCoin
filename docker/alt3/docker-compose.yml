@@ -1,0 +1,48 @@
+version: '3'
+services:
+  web:
+    image: nginx
+    ports:
+      - "8000:80"
+    volumes:
+      - "./nginx/default.conf:/etc/nginx/conf.d/default.conf"
+      - "../..:/var/www"
+    networks:
+      - appcoinnet
+    deploy:
+      replicas: 5
+  php:
+    image: mariogalan/alt3
+    ports:
+      - "9000:9000"
+    volumes:
+      - "../..:/var/www"
+    networks:
+      - appcoinnet
+    deploy:
+      replicas: 5
+  mysql:
+    image: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: 'root'
+      MYSQL_DATABASE: 'appcoin'
+    volumes:
+      - "./mysql/db:/var/lib/mysql"
+    deploy:
+      placement:
+        constraints: [node.role == manager]
+    networks:
+      - appcoinnet
+  visualizer:
+    image: dockersamples/visualizer:stable
+    ports:
+      - "8080:8080"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+    deploy:
+      placement:
+        constraints: [node.role == manager]
+    networks:
+      - appcoinnet
+networks:
+  appcoinnet:
