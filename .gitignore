@@ -16,3 +16,5 @@
 .phpunit
 /phpunit.xml
 ###< symfony/phpunit-bridge ###
+/docker/alt3/mysql/db
+/docker/alt2/mysql/db
