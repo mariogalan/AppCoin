@@ -23,7 +23,8 @@ class AppCoinController extends Controller
     public function homepage()
     {
         return $this->render('homepage.html.twig', [
-            'coin' => $this->coins->getOneRandom()
+            'coin' => $this->coins->getOneRandom(),
+            'hostname' => gethostname()
         ]);
     }
 
