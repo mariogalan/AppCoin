@@ -24,7 +24,7 @@ class AppCoinController extends Controller
     {
         return $this->render('homepage.html.twig', [
             'coin' => $this->coins->getOneRandom(),
-            'hostname' => gethostname()
+            'hostname' => gethostname(),
         ]);
     }
 
@@ -34,7 +34,8 @@ class AppCoinController extends Controller
     public function wallet()
     {
         return $this->render('wallet.html.twig', [
-            'coins' => $this->getDoctrine()->getRepository(Wallet::class)->findAll()
+            'coins' => $this->getDoctrine()->getRepository(Wallet::class)->findAll(),
+            'hostname' => gethostname(),
         ]);
     }
 
