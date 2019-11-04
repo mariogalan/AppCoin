@@ -17,7 +17,7 @@ EXPOSE 9000
 #RUN apt-get install -y git curl php-cli php-dom php-zip
 
 # Git is needed for composer to run. Libraries installed are needed for the PHP extensions.
-RUN apt-get update && apt-get install -y git zlib1g zlib1g-dev libxml2 libxml2-dev
+RUN apt-get update && apt-get install -y git zlib1g zlib1g-dev libxml2 libxml2-dev libzip-dev
 
 # Install PHP extensions
 
